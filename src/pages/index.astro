@@ -1,0 +1,91 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// Render the content for each post
+const renderedPosts = await Promise.all(
+	posts.map(async (post) => {
+		const { Content } = await post.render();
+		return { ...post, Content };
+	})
+);
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+	<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	<style>
+		main {
+			width: 100%;
+			max-width: 960px;
+			margin: 0 auto;
+			padding: 0 1rem;
+		}
+		.post-container {
+			margin-bottom: 4rem;
+			padding-bottom: 4rem;
+			border-bottom: 1px solid rgb(var(--gray));
+		}
+		.post-container:last-child {
+			border-bottom: none;
+		}
+		.post-header {
+			margin-bottom: 2rem;
+		}
+		.hero-image {
+			width: 100%;
+			max-width: 720px;
+			height: auto;
+			margin: 0 auto 1.5rem;
+			border-radius: 12px;
+		}
+		.title {
+			margin: 0.5rem 0;
+			color: rgb(var(--black));
+			line-height: 1.2;
+			font-size: 2rem;
+		}
+		.date {
+			margin: 0;
+			color: rgb(var(--gray));
+		}
+		.post-content {
+			line-height: 1.6;
+		}
+		@media (max-width: 720px) {
+			.title {
+				font-size: 1.75rem;
+			}
+		}
+	</style>
+</head>
+<body>
+<Header />
+<main>
+	<section>
+		{
+			renderedPosts.map((post) => (
+				<article class="post-container">
+					<header class="post-header">
+						<h2 class="title"><FormattedDate date={post.data.pubDate} /> - {post.data.title}</h2>
+					</header>
+					<div class="post-content">
+						<post.Content />
+					</div>
+				</article>
+			))
+			}
+			</section>
+			</main>
+			<Footer />
+			</body>
+			</html>
