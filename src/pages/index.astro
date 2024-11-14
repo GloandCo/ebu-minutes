@@ -61,6 +61,17 @@ const renderedPosts = await Promise.all(
 		.post-content {
 			line-height: 1.6;
 		}
+		.intro-box {
+			padding: 2em;
+			border: 1px solid #ebebeb;
+			border-radius: 1em;
+			background: white;
+			margin-top: 2em;
+			margin-bottom: 4em;
+		}
+		.intro-box *:last-child {
+			margin-bottom: 0;
+		}
 		@media (max-width: 720px) {
 			.title {
 				font-size: 1.75rem;
@@ -71,6 +82,10 @@ const renderedPosts = await Promise.all(
 <body>
 <Header />
 <main>
+	<section class="intro-box">
+		<h3>Creating standardisation of broadcast graphics</h3>
+		<p>Some blerb about what we're doing with links to repos</p>
+	</section>
 	<section>
 		{
 			renderedPosts.map((post) => (
