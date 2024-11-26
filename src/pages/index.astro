@@ -72,6 +72,9 @@ const renderedPosts = await Promise.all(
 		.intro-box *:last-child {
 			margin-bottom: 0;
 		}
+		ul li a{
+			color: black;
+		}
 		@media (max-width: 720px) {
 			.title {
 				font-size: 1.75rem;
@@ -84,7 +87,9 @@ const renderedPosts = await Promise.all(
 <main>
 	<section class="intro-box">
 		<h3>Creating standardisation of broadcast graphics</h3>
-		<p>Some blerb about what we're doing with links to repos</p>
+		<ul>
+			<li><a href="https://github.com/SuperFlyTV/tmp-GraphicsDefinition?tab=readme-ov-file">Graphics Definition - Created by Superfly</a></a></li>
+		</ul>
 	</section>
 	<section>
 		{
@@ -100,7 +105,7 @@ const renderedPosts = await Promise.all(
 			))
 			}
 			</section>
-			</main>
-			<Footer />
-			</body>
-			</html>
+		</main>
+		<Footer />
+	</body>
+</html>
