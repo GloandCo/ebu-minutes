@@ -2,6 +2,8 @@
 
 This repo holds all the minutes of our meetings for public viewing.
 
+**View the minutes here: [https://ebu-minutes.vercel.app/](https://ebu-minutes.vercel.app/)**
+
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
